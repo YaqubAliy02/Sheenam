@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sheenam", "Sheenam\Sheenam.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheenam.API.Tests.Unit", "Sheenam.API.Tests.Unit\Sheenam.API.Tests.Unit.csproj", "{A3BD4F2C-D67D-4AA1-8790-5578799CB23C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheenam.API.Infrastructure.Build", "Sheenam.API.Infrastructure.Build\Sheenam.API.Infrastructure.Build.csproj", "{E2BCF26B-73E0-4B21-95A0-246D7529FF6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A3BD4F2C-D67D-4AA1-8790-5578799CB23C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3BD4F2C-D67D-4AA1-8790-5578799CB23C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3BD4F2C-D67D-4AA1-8790-5578799CB23C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2BCF26B-73E0-4B21-95A0-246D7529FF6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2BCF26B-73E0-4B21-95A0-246D7529FF6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2BCF26B-73E0-4B21-95A0-246D7529FF6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2BCF26B-73E0-4B21-95A0-246D7529FF6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
