@@ -1,4 +1,8 @@
-﻿namespace Sheenam.API.Tests.Unit
+﻿//------------------------------
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//-----------------------------
+namespace Sheenam.API.Tests.Unit
 {
    
     public class DeleteMe
