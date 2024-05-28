@@ -1,3 +1,7 @@
+//------------------------------
+// Copyright (c) Coalition of Good-Hearted Engineers
+// Free To Use Comfort and Peace
+//-----------------------------
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
