@@ -21,21 +21,22 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
                 new GuestValidationException(nullGuestException);
 
             //when
-            ValueTask<Guest> addGuestTask = 
+            ValueTask<Guest> addGuestTask =
                 this.guestService.AddGuestAsync(nullGuest);
 
             //then
-            await Assert.ThrowsAsync<GuestValidationException>(() => 
-            addGuestTask.AsTask()); 
+            await Assert.ThrowsAsync<GuestValidationException>(() =>
+            addGuestTask.AsTask());
 
-            this.loggingBrokerMock.Verify(broker => 
+            this.loggingBrokerMock.Verify(broker =>
              broker.LogError(It.Is(SameExceptionAs(expectedGuestValidationException))),
              Times.Once);
 
             this.storageBrokerMock.Verify(broker =>
             broker.InsertGuestAsync(It.IsAny<Guest>()), Times.Never);
 
+            this.loggingBrokerMock.VerifyNoOtherCalls();
             this.storageBrokerMock.VerifyNoOtherCalls();
-            this.loggingBrokerMock.VerifyNoOtherCalls();        }
+        }
     }
 }

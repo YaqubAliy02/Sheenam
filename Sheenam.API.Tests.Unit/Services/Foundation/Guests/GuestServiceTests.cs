@@ -43,8 +43,6 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
             actualException.Message == expectedException.Message 
             && actualException.InnerException.Message == expectedException.InnerException.Message
             && (actualException.InnerException as Xeption).DataEquals(expectedException.Data);
-
-
         }
         private static Filler<Guest> CreateGuestFiller(DateTimeOffset date)
         {
