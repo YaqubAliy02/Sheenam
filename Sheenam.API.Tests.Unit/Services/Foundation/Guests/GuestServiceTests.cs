@@ -4,6 +4,7 @@
 //-----------------------------
 
 using Moq;
+using Sheenam.Brokers.Loggings;
 using Sheenam.Brokers.Storages;
 using Sheenam.Models.Foundations.Guests;
 using Sheenam.Services.Foundations.Guests;
@@ -14,14 +15,18 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
     public partial class GuestServiceTests
     {
         private readonly Mock<IStorageBroker> storageBrokerMock;
+        private readonly Mock<ILoggingBroker> loggingBrokerMock;
         private readonly IGuestService guestService;
 
         public GuestServiceTests()
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
+            this.loggingBrokerMock = new Mock<ILoggingBroker>();
 
             this.guestService = 
-                new GuestService(storageBroker: this.storageBrokerMock.Object);
+                new GuestService(
+                    storageBroker: this.storageBrokerMock.Object,
+                    loggingBroker: this.loggingBrokerMock.Object);
         }
 
         private static Guest CreateRandomGuest() =>
