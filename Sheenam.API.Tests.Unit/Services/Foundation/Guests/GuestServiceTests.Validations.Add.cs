@@ -16,18 +16,16 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
             //given
             Guest nullGuest = null;
             var nullGuestException = new NullGuestException();
-
             var expectedGuestValidationException =
                 new GuestValidationException(nullGuestException);
 
             //when
             ValueTask<Guest> addGuestTask = 
-              this.guestService.AddGuestAsync(nullGuest);
+                this.guestService.AddGuestAsync(nullGuest);
 
             //then
-            await Assert.ThrowsAsync<GuestValidationException>(() =>
-            addGuestTask.AsTask());
-
+            await Assert.ThrowsAsync<GuestValidationException>(() => 
+            addGuestTask.AsTask()); 
         }
     }
 }
