@@ -5,11 +5,10 @@
 using Sheenam.Brokers.Loggings;
 using Sheenam.Brokers.Storages;
 using Sheenam.Models.Foundations.Guests;
-using Sheenam.Models.Foundations.Guests.Exceptions;
 
 namespace Sheenam.Services.Foundations.Guests
 {
-    public class GuestService : IGuestService
+    public partial class GuestService : IGuestService
     {
         private readonly IStorageBroker storageBroker;
         private readonly ILoggingBroker loggingBroker;
@@ -22,28 +21,12 @@ namespace Sheenam.Services.Foundations.Guests
             this.loggingBroker = loggingBroker;
         }
 
-        public async ValueTask<Guest> AddGuestAsync(Guest guest)
-        {
-            
-            try
+        public  ValueTask<Guest> AddGuestAsync(Guest guest) =>
+            TryCatch(async () =>
             {
-                if (guest is null)
-                    throw new NullGuestException();
+                ValidateGuestNotNull(guest);
 
-            return await this.storageBroker.InsertGuestAsync(guest);
-            }
-            catch (NullGuestException nullGuestException)
-            {
-                var guestValidationException =
-                    new GuestValidationException(nullGuestException);
-
-                this.loggingBroker.LogError(guestValidationException);
-
-                throw guestValidationException;
-            }
-
-           
-
-        }
+                return await this.storageBroker.InsertGuestAsync(guest);
+            });
     }
 }

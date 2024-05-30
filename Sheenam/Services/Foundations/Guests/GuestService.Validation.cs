@@ -4,11 +4,16 @@
 //-----------------------------
 
 using Sheenam.Models.Foundations.Guests;
+using Sheenam.Models.Foundations.Guests.Exceptions;
 
 namespace Sheenam.Services.Foundations.Guests
 {
-    public interface IGuestService
+    public partial class GuestService
     {
-        public ValueTask<Guest> AddGuestAsync(Guest guest);
+        private void ValidateGuestNotNull(Guest guest)
+        {
+            if (guest is null)
+                throw new NullGuestException();
+        }
     }
-}
+}   
