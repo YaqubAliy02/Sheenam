@@ -23,6 +23,10 @@ namespace Sheenam.Services.Foundations.Guests
             {
                throw CreateAndLogValidationException(nullGuestException);
             }
+            catch(InvalidGuestException invalidGuestException)
+            {
+                throw CreateAndLogValidationException(invalidGuestException);
+            }
         }
 
         private GuestValidationException CreateAndLogValidationException(Xeption exception)
@@ -32,7 +36,7 @@ namespace Sheenam.Services.Foundations.Guests
 
             this.loggingBroker.LogError(guestValidationException);
 
-            throw guestValidationException;
+            return guestValidationException;
         }
     }
 }

@@ -82,6 +82,9 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
             var expectedGuestValidationException =
                 new GuestValidationException(invalidGuestException);
 
+            this.loggingBrokerMock
+                .Setup(broker => broker.LogError(It.Is(SameExceptionAs(expectedGuestValidationException))));
+
             //when
             ValueTask<Guest> addGuestTask =
                 this.guestService.AddGuestAsync(invalidGuest);
