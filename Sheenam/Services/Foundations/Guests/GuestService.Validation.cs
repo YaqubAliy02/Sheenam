@@ -3,6 +3,7 @@
 // Free To Use To Find Comfort and Peace
 //-----------------------------
 
+using System.Data;
 using Sheenam.Models.Foundations.Guests;
 using Sheenam.Models.Foundations.Guests.Exceptions;
 
@@ -20,7 +21,8 @@ namespace Sheenam.Services.Foundations.Guests
                 (Rule: IsInvalid(guest.LastName), Parameter: nameof(Guest.LastName)),
                 (Rule: IsInvalid(guest.DateOfBirth), Parameter: nameof(Guest.DateOfBirth)),
                 (Rule: IsInvalid(guest.Email), Parameter: nameof(Guest.Email)),
-                (Rule: IsInvalid(guest.Address), Parameter: nameof(Guest.Address))
+                (Rule: IsInvalid(guest.Address), Parameter: nameof(Guest.Address)),
+                (Rule: IsInvalid(guest.Gender), Parameter: nameof(Guest.Gender))
             );  
         }
 
@@ -46,6 +48,12 @@ namespace Sheenam.Services.Foundations.Guests
         {
             Condition = date == default,
             Message = "Date is required"
+        };
+
+        private static dynamic IsInvalid(GenderType gender) => new
+        {
+            Condition = Enum.IsDefined(gender) is false,
+            Message = "Value is invalid"
         };
 
         
