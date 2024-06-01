@@ -21,7 +21,7 @@ namespace Sheenam.Services.Foundations.Guests
             this.loggingBroker = loggingBroker;
         }
 
-        public  ValueTask<Guest> AddGuestAsync(Guest guest) =>
+        public ValueTask<Guest> AddGuestAsync(Guest guest) =>
             TryCatch(async () =>
             {
                 ValidateGuestOnAdd(guest);

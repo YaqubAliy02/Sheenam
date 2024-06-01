@@ -42,5 +42,5 @@ static void AddBroker(WebApplicationBuilder builder)
 
 static void AddFoundationServices(WebApplicationBuilder builder)
 {
-   builder.Services.AddTransient<IGuestService, GuestService>();
+    builder.Services.AddTransient<IGuestService, GuestService>();
 }

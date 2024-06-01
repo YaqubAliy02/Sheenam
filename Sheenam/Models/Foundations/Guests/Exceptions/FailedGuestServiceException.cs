@@ -9,10 +9,10 @@ namespace Sheenam.Models.Foundations.Guests.Exceptions
 {
     public class FailedGuestServiceException : Xeption
     {
-        public FailedGuestServiceException(Exception innerException) 
+        public FailedGuestServiceException(Exception innerException)
             : base(message: "Failed guest service error occured, contact support",
-                  innerException) 
+                  innerException)
         { }
-        
+
     }
 }
