@@ -36,6 +36,7 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
            broker.InsertGuestAsync(inputGuest), Times.Once);
 
            this.storageBrokerMock.VerifyNoOtherCalls();
+           this.loggingBrokerMock.VerifyNoOtherCalls();
         }
     }
 }
