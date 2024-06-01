@@ -10,7 +10,7 @@ namespace Sheenam.Models.Foundations.Guests.Exceptions
     {
         public NullGuestException()
             : base(message: "Guest is null")
-        {}
-      
+        { }
+
     }
 }

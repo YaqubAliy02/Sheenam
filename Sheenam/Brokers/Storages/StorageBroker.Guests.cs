@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sheenam.Models.Foundations.Guests;
-using System.Runtime.CompilerServices;
 
 namespace Sheenam.Brokers.Storages
 {
     public partial class StorageBroker
     {
-        public DbSet<Guest>  Guests { get; set; }
+        public DbSet<Guest> Guests { get; set; }
 
         public async ValueTask<Guest> InsertGuestAsync(Guest guest)
         {

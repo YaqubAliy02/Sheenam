@@ -20,7 +20,7 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
         {
             this.storageBrokerMock = new Mock<IStorageBroker>();
 
-            this.guestService = 
+            this.guestService =
                 new GuestService(storageBroker: this.storageBrokerMock.Object);
         }
 
