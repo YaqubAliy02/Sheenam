@@ -4,6 +4,7 @@
 //-----------------------------
 using Sheenam.Brokers.Loggings;
 using Sheenam.Brokers.Storages;
+using Sheenam.Services.Foundations.Guests;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 AddBroker(builder);
+AddFoundationServices(builder);
 
 var app = builder.Build();
 
@@ -36,4 +38,9 @@ static void AddBroker(WebApplicationBuilder builder)
 {
     builder.Services.AddTransient<IStorageBroker, StorageBroker>();
     builder.Services.AddTransient<ILoggingBroker, LoggingBroker>();
+}
+
+static void AddFoundationServices(WebApplicationBuilder builder)
+{
+   builder.Services.AddTransient<IGuestService, GuestService>();
 }
