@@ -27,7 +27,7 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
             this.storageBrokerMock = new Mock<IStorageBroker>();
             this.loggingBrokerMock = new Mock<ILoggingBroker>();
 
-            this.guestService = 
+            this.guestService =
                 new GuestService(
                     storageBroker: this.storageBrokerMock.Object,
                     loggingBroker: this.loggingBrokerMock.Object);
@@ -45,19 +45,19 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
         private static string GetRandomString() =>
             new MnemonicString().GetValue();
 
-        private static SqlException GetSqlError() => 
+        private static SqlException GetSqlError() =>
             (SqlException)FormatterServices.GetUninitializedObject(typeof(SqlException));
 
         private static T GetInvalidEnum<T>()
         {
             int randomNumber = GetRandomNumber();
 
-            while(Enum.IsDefined(typeof(T), randomNumber) is true)
+            while (Enum.IsDefined(typeof(T), randomNumber) is true)
             {
                 randomNumber = GetRandomNumber();
             }
 
-            return(T)(object) randomNumber;
+            return (T)(object)randomNumber;
         }
         private static Expression<Func<Xeption, bool>> SameExceptionAs(Xeption expectedException) =>
             actualException => actualException.SameExceptionAs(expectedException);

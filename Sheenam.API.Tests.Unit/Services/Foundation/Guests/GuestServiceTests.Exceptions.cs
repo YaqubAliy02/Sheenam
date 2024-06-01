@@ -36,7 +36,7 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
             await Assert.ThrowsAsync<GuestDependencyException>(() =>
             addGuestTask.AsTask());
 
-            this.storageBrokerMock.Verify(broker => 
+            this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(someGuest),
                 Times.Once);
 
@@ -59,7 +59,7 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
 
             var alreadyExistGuestException = new AlreadyExistGuestException(duplicateKeyException);
 
-            var expectedGuestDependencyException = 
+            var expectedGuestDependencyException =
                 new GuestDependencyException(alreadyExistGuestException);
 
             this.storageBrokerMock.Setup(broker =>
@@ -71,14 +71,14 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
                 this.guestService.AddGuestAsync(someGuest);
 
             //then
-            await Assert.ThrowsAsync<GuestDependencyValidationException>(() => 
+            await Assert.ThrowsAsync<GuestDependencyValidationException>(() =>
                 addGuestTask.AsTask());
 
-            this.storageBrokerMock.Verify(broker => 
+            this.storageBrokerMock.Verify(broker =>
                 broker.InsertGuestAsync(someGuest),
                 Times.Once);
 
-            this.loggingBrokerMock.Verify(broker => 
+            this.loggingBrokerMock.Verify(broker =>
                 broker.LogError(It.IsAny<GuestDependencyValidationException>()),
                 Times.Once);
 
@@ -91,12 +91,12 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
         {
             //given
             Guest someGuest = CreateRandomGuest();
-            var serviceException =  new Exception();
+            var serviceException = new Exception();
 
-            var failedGuestServiceException = 
+            var failedGuestServiceException =
                 new FailedGuestServiceException(serviceException);
 
-            var expectedGuestServiceException = 
+            var expectedGuestServiceException =
                 new GuestServiceException(failedGuestServiceException);
 
             this.storageBrokerMock.Setup(broker =>
@@ -104,11 +104,11 @@ namespace Sheenam.API.Tests.Unit.Services.Foundation.Guests
                 .ThrowsAsync(serviceException);
 
             //when
-            ValueTask<Guest> addGuestTask = 
+            ValueTask<Guest> addGuestTask =
                 this.guestService.AddGuestAsync(someGuest);
 
             //then
-            await Assert.ThrowsAsync<GuestServiceException>(() => 
+            await Assert.ThrowsAsync<GuestServiceException>(() =>
                 addGuestTask.AsTask());
 
             this.storageBrokerMock.Verify(broker =>

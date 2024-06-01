@@ -31,7 +31,7 @@ namespace Sheenam.Services.Foundations.Guests
             }
             catch (SqlException sqlException)
             {
-                var failedGuestStorageException = 
+                var failedGuestStorageException =
                     new FailedGuestStorageException(sqlException);
 
                 throw CreateAndLogCriticalDependencyException(failedGuestStorageException);
@@ -39,14 +39,14 @@ namespace Sheenam.Services.Foundations.Guests
             }
             catch (DuplicateKeyException duplicateKeyException)
             {
-                var alreadyExistGuestException = 
+                var alreadyExistGuestException =
                     new AlreadyExistGuestException(duplicateKeyException);
 
                 throw CreateAndLogDependencyValidationException(alreadyExistGuestException);
             }
-            catch (Exception exception) 
+            catch (Exception exception)
             {
-                var failedGuestServiceException = 
+                var failedGuestServiceException =
                     new FailedGuestServiceException(exception);
 
                 throw CreateAndLogServiceException(failedGuestServiceException);
@@ -63,7 +63,7 @@ namespace Sheenam.Services.Foundations.Guests
             return guestValidationException;
         }
 
-        private GuestDependencyException CreateAndLogCriticalDependencyException (Xeption exception)
+        private GuestDependencyException CreateAndLogCriticalDependencyException(Xeption exception)
         {
             var guestDependencyException = new GuestDependencyException(exception);
             this.loggingBroker.LogCritical(guestDependencyException);
@@ -74,7 +74,7 @@ namespace Sheenam.Services.Foundations.Guests
         private GuestDependencyValidationException CreateAndLogDependencyValidationException(
             Xeption exception)
         {
-            var guestDependencyValidationException = 
+            var guestDependencyValidationException =
                 new GuestDependencyValidationException(exception);
 
             this.loggingBroker.LogError(guestDependencyValidationException);
@@ -93,4 +93,3 @@ namespace Sheenam.Services.Foundations.Guests
         }
     }
 }
-    
