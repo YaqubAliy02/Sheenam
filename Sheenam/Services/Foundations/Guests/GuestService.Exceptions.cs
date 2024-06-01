@@ -19,28 +19,37 @@ namespace Sheenam.Services.Foundations.Guests
         {
             try
             {
-               return await returningGuestFunction();
+                return await returningGuestFunction();
             }
             catch (NullGuestException nullGuestException)
             {
-               throw CreateAndLogValidationException(nullGuestException);
+                throw CreateAndLogValidationException(nullGuestException);
             }
-            catch(InvalidGuestException invalidGuestException)
+            catch (InvalidGuestException invalidGuestException)
             {
                 throw CreateAndLogValidationException(invalidGuestException);
             }
-            catch(SqlException sqlException)
+            catch (SqlException sqlException)
             {
-                var failedGuestStorageException = new FailedGuestStorageException(sqlException);
+                var failedGuestStorageException = 
+                    new FailedGuestStorageException(sqlException);
 
                 throw CreateAndLogCriticalDependencyException(failedGuestStorageException);
 
             }
             catch (DuplicateKeyException duplicateKeyException)
             {
-                var alreadyExistGuestException = new AlreadyExistGuestException(duplicateKeyException);
+                var alreadyExistGuestException = 
+                    new AlreadyExistGuestException(duplicateKeyException);
 
                 throw CreateAndLogDependencyValidationException(alreadyExistGuestException);
+            }
+            catch (Exception exception) 
+            {
+                var failedGuestServiceException = 
+                    new FailedGuestServiceException(exception);
+
+                throw CreateAndLogServiceException(failedGuestServiceException);
             }
         }
 
@@ -71,6 +80,16 @@ namespace Sheenam.Services.Foundations.Guests
             this.loggingBroker.LogError(guestDependencyValidationException);
 
             return guestDependencyValidationException;
+        }
+
+        private GuestServiceException CreateAndLogServiceException(Xeption exception)
+        {
+            var guestServiceException =
+                new GuestServiceException(exception);
+
+            this.loggingBroker.LogError(guestServiceException);
+
+            return guestServiceException;
         }
     }
 }
